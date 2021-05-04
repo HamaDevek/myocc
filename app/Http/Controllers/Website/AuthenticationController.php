@@ -91,11 +91,11 @@ class AuthenticationController extends Controller
             $user->a_image = empty($request->imgs) ? null :  $request->imgs->store('uploads', 'public');
             $user->save();
             $random = $rand->randomCode(5);
-            Nexmo::message()->send([
-                'to'   => '+9647501594292',
-                'from' => '+9647501594292',
-                'text' => 'The verification code :' . $random
-            ]);
+            // Nexmo::message()->send([
+            //     'to'   => '+9647501594292',
+            //     'from' => '+9647501594292',
+            //     'text' => 'The verification code :' . $random
+            // ]);
             $getUser = \App\AccountTable::where('a_phone', $request->input('phone'))->first();
             $verify = new \App\VerificationTable;
             $verify->v_code = $random;
